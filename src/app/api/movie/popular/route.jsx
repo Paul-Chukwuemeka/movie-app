@@ -4,8 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const res = await tmdb.get("/movie/popular");
-    console.log(res);
-    return NextResponse.json(res.data);
+    return NextResponse.json(res.data, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       {

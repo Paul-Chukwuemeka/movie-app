@@ -5,7 +5,6 @@ import Card from "@/components/card";
 
 const ComedySeries = () => {
   const {data,loading,error} = useGetSeriesByGenre(35);
-
   return (
     <div className="w-full overflow-hidden">
       <h1 className="text-left w-full px-4 py-2 text-3xl font-bold">Comedy</h1>

@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const res = await tmdb.get("/tv/popular");
-    console.log(res)
     return NextResponse.json(res.data);
   } catch (error) {
     return NextResponse.json({

@@ -18,7 +18,7 @@ tmdb.interceptors.response.use((response) => {
     }
     return response;
   } catch (error) {
-    console.log(error);
+    return error;
   }
 });
 

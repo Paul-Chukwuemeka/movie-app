@@ -54,23 +54,23 @@ function Slider({ trending, isTrendingLoading }) {
                 } border-1 rounded-full h-10 w-10 flex  items-center justify-center p-3 `}
                 >
                   {trending[currentTrending]?.vote_average &&
-                    (trending[currentTrending]?.vote_average).toFixed(1)}
+                  (trending[currentTrending]?.vote_average).toFixed(1)}
                 </p>
                 <button
                   className="flex hover:[&>span]:w-full overflow-hidden items-center border-2 w-40 rounded-full cursor-pointer border-blue-500 justify-center text-white relative text-xl font-semibold p-2 gap-1"
                   onClick={() => {
-                    if (currentPage && currentPage == "movies") {
-                      setMovieId(trending[currentTrending].id);
-                      router.push(`/${trending[currentTrending].id}`);
-                    } else if (currentPage && currentPage == "series") {
-                      setSeriesId(trending[currentTrending].id);
-                      router.push(`/series/${trending[currentTrending].id}`);
+                    if (currentPage == "movies") {
+                      setMovieId(trending[currentTrending]?.id);
+                      router.push(`/${trending[currentTrending]?.id}`);
+                    } else if (currentPage == "series") {
+                      setSeriesId(trending[currentTrending]?.id);
+                      router.push(`/series/${trending[currentTrending]?.id}`);
+                    } else {
+                      return null;
                     }
                   }}
                 >
-                  <span className="absolute -z-1 duration-500 block left-0 top-0 h-full w-0 bg-blue-500">
-
-                  </span>
+                  <span className="absolute -z-1 duration-500 block left-0 top-0 h-full w-0 bg-blue-500"></span>
                   More Info <FaArrowRightLong />
                 </button>
               </div>
