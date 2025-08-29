@@ -6,7 +6,7 @@ import AppContext from "./contexts";
 const ContextProvider = ({ children }) => {
   const [movieId, setMovieId] = useState(null);
   const [seriesId, setSeriesId] = useState(null);
-  const [currentPage,setCurrentPage] = useState("")
+  const [currentPage,setCurrentPage] = useState(null)
   return (
     <AppContext.Provider
       value={{

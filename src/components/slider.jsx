@@ -21,9 +21,11 @@ function Slider({ trending, isTrendingLoading }) {
       setCurrentTrending((prev) =>
         prev >= trending.length - 1 ? 0 : prev + 1
       );
-    }, 15000);
+    }, 20000);
     return () => clearInterval(interval);
   }, [trending]);
+
+
 
   return (
     <div className=" h-fit w-full max-w-[2400px] relative " ref={banner}>
@@ -54,7 +56,7 @@ function Slider({ trending, isTrendingLoading }) {
                 } border-1 rounded-full h-10 w-10 flex  items-center justify-center p-3 `}
                 >
                   {trending[currentTrending]?.vote_average &&
-                  (trending[currentTrending]?.vote_average).toFixed(1)}
+                    (trending[currentTrending]?.vote_average).toFixed(1)}
                 </p>
                 <button
                   className="flex hover:[&>span]:w-full overflow-hidden items-center border-2 w-40 rounded-full cursor-pointer border-blue-500 justify-center text-white relative text-xl font-semibold p-2 gap-1"
@@ -119,3 +121,24 @@ function Slider({ trending, isTrendingLoading }) {
 }
 
 export default Slider;
+
+
+/*
+group = 10
+bill = 142
+
+
+
+(bill * %tip)/100
+
+
+(142 * 50)100 = 71 
+
+total = 142 + 71 = 213
+
+tip Per person = tip/group = 71/10 = 7.1
+total/group
+final bill per person = total/group = 213/10 =  21.3
+
+
+*/
