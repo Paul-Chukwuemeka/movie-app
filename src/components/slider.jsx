@@ -107,7 +107,7 @@ function Slider({ trending, isTrendingLoading }) {
                       priority
                       alt=""
                       aria-label=""
-                      className="w-full h-auto  object-fit "
+                      className="w-full h-auto  object-fill "
                     />
                   )
                 );
