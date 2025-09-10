@@ -1,27 +1,16 @@
 import React, { useEffect, useState } from "react";
 import useGetMoviesByGenre from "@/hooks/movies/useGetMoviesByGenre";
-import Loading from "../loading";
-import Image from "next/image";
-import Card from "../card";
+import Card from "@/components/ui/card";
+
 
 const ScifiMovies = () => {
-  const {data,error,loading} =  useGetMoviesByGenre(878);
+  const {data,error} =  useGetMoviesByGenre(878);
 
   return (
     <div className="w-full overflow-hidden">
       <h1 className="text-left w-full px-4 py-2 text-3xl font-bold">Sci-fi</h1>
       <div className="w-full movies overflow-y-hidden flex gap-4 overflow-x-scroll p-4 py-1 ">
-        {loading
-          ? Array(10)
-              .fill("")
-              .map((_, i) => {
-                return (
-                  <div key={i}>
-                    <Loading />
-                  </div>
-                );
-              })
-          : data &&
+        {data &&
             data.map((item, i) => {
               return (
                 <Card

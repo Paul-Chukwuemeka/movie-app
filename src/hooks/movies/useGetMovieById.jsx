@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useState, useEffect, useContext } from "react";
+import AppContext from "@/contexts/contexts";
 
 const useGetMovieById = (id) => {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { setLoadValue } = useContext(AppContext);
 
   useEffect(() => {
+    setLoadValue((prev) => prev + 1);
     let ignore = false;
     async function fetchData() {
       try {
@@ -19,17 +21,18 @@ const useGetMovieById = (id) => {
       } catch (error) {
         if (!ignore) setError(error);
       } finally {
-        if (!ignore) setLoading(false);
+        if (!ignore) setLoadValue((prev) => prev - 1);
       }
     }
 
     fetchData();
     return () => {
       ignore = true;
+      setLoadValue(0);
     };
   }, []);
 
-  return { data, loading, error };
+  return { data, error };
 };
 
 export default useGetMovieById;

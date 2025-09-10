@@ -1,13 +1,15 @@
 "use client";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import AppContext from "@/contexts/contexts";
 
 const useGetMoviesByGenre = (id) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { setLoadValue } = useContext(AppContext);
 
   useEffect(() => {
+    setLoadValue((prev) => prev + 1);
     let ignore = false;
     async function fetchData() {
       try {
@@ -21,7 +23,7 @@ const useGetMoviesByGenre = (id) => {
         if (!ignore) setError(`Error fetching movies by genre:$`, error);
         return [];
       } finally {
-        if (!ignore) setLoading(false);
+        if (!ignore) setLoadValue((prev) => prev - 1);
       }
     }
 
@@ -31,7 +33,7 @@ const useGetMoviesByGenre = (id) => {
     };
   }, []);
 
-  return { data, error, loading };
+  return { data, error };
 };
 
 export default useGetMoviesByGenre;

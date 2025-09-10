@@ -1,12 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AppContext from "./contexts";
 
 const ContextProvider = ({ children }) => {
   const [movieId, setMovieId] = useState(null);
   const [seriesId, setSeriesId] = useState(null);
-  const [currentPage,setCurrentPage] = useState(null)
+  const [currentPage, setCurrentPage] = useState(null);
+  const [loadValue, setLoadValue] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (loadValue != null && loadValue > 0) {
+      setLoading(true);
+    } else if (loadValue == 0) {
+      setLoading(false);
+    }
+  }, [loadValue]);
+
   return (
     <AppContext.Provider
       value={{
@@ -15,7 +26,11 @@ const ContextProvider = ({ children }) => {
         setMovieId,
         setSeriesId,
         currentPage,
-        setCurrentPage
+        setCurrentPage,
+        loading,
+        setLoading,
+        loadValue,
+        setLoadValue,
       }}
     >
       {children}

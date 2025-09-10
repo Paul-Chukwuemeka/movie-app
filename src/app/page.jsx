@@ -1,8 +1,8 @@
 "use client";
 
-import Header from "../components/header";
-import Main from "../components/main";
-import Footer from "../components/footer";
+import Header from "../components/layout/header";
+import Main from "../components/layout/main";
+import Footer from "../components/layout/footer";
 import AppContext from "@/contexts/contexts";
 import { useContext, useEffect } from "react";
 

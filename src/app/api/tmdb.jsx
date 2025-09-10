@@ -8,12 +8,16 @@ const tmdb = axios.create({
     page: 1,
     sort_by: "popularity.desc",
     include_adult: false,
+    include_image_language: "en,null",
   },
 });
 
 tmdb.interceptors.response.use((response) => {
   try {
-    if (response.config.url.includes("/movie/popular") || response.config.url.includes("/tv/popular")) {
+    if (
+      response.config.url.includes("/movie/popular") ||
+      response.config.url.includes("/tv/popular")
+    ) {
       response.data.results = response.data.results.slice(0, 10);
     }
     return response;

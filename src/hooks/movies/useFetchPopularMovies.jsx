@@ -1,15 +1,16 @@
 "use client";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import AppContext from "@/contexts/contexts";
 
 export default function useFetchPopular() {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { setLoadValue } = useContext(AppContext);
 
   useEffect(() => {
+    setLoadValue((prev) => prev + 1);
     let ignore = false;
-
     async function fetchData() {
       try {
         const res = await axios.get("/api/movie/popular");
@@ -18,7 +19,7 @@ export default function useFetchPopular() {
         if (!error) setError(error);
         return [];
       } finally {
-        if (!ignore) setLoading(false);
+        if (!ignore) setLoadValue((prev) => prev - 1);
       }
     }
 
@@ -26,8 +27,9 @@ export default function useFetchPopular() {
 
     return () => {
       ignore = true;
+      setLoadValue(0);
     };
   }, []);
 
-  return { data, loading, error };
+  return { data, error };
 }

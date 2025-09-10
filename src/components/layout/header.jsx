@@ -1,5 +1,5 @@
-import React from "react";
-import { FaSearch, FaSun, FaMoon } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 import { MdMovie } from "react-icons/md";
 import AppContext from "@/contexts/contexts";
 import { useContext } from "react";
@@ -7,33 +7,34 @@ import Link from "next/link";
 
 const Header = () => {
   const { currentPage } = useContext(AppContext);
+  const [isSearch, setIsSearch] = useState(false);
   return (
     <div
       className={` shrink-0 bg-black/30  text-white flex items-center justify-between shadow-2xl z-50 backdrop-blur-sm  w-full max-w-250 rounded-full fixed top-5 left-1/2 -translate-x-1/2 p-2 px-10`}
     >
-      <h1 className="flex items-center text-nowrap gap-1 w-70  text-xl font-bold">
-        RTB {currentPage} <MdMovie className="text-amber-500" />
+      <h1 className="flex font-dynapuff items-center text-nowrap gap-1 w-70  text-xl font-bold">
+        RTB {currentPage} 
       </h1>
-      <div className="w-1/2 *:p-1 p-3  flex gap-1 *:text-lg *:font-semibold *:rounded-lg">
+      <div className="w-1/2 *:p-1 p-3 max-md:hidden flex gap-1 *:text-lg *:font-semibold *:rounded-lg">
         <Link href={"/"} className="cursor-pointer">
-          <button
-            className={`cursor-pointer${
+          <li
+            className={`cursor-pointer list-none c ${
               currentPage == "movies" &&
-              "after::block after:content-[''] after:cursor-pointer after:bg-blue-700 after:h-0.5 after:blur-[2px]  after:w-full after:absolute after:bottom-0 after:left-0  relative"
+              "after::block after:content-['']  cursor-pointer after:bg-blue-700 after:h-0.5 after:blur-[2px]  after:w-full after:absolute after:bottom-0 after:left-0  relative"
             }`}
           >
             Movies
-          </button>
+          </li>
         </Link>
         <Link href={"/series"} className="cursor-pointer">
-          <button
-            className={`cursor-pointer ${
+          <li
+            className={` list-none cursor-pointer ${
               currentPage == "series" &&
-              "after::block after:cursor-pointer after:content-[''] after:bg-blue-700 after:h-0.5 after:blur-[2px]  after:w-full after:absolute after:bottom-0 after:left-0  relative"
+              "after::block  cursor-pointer after:content-[''] after:bg-blue-700 after:h-0.5 after:blur-[2px]  after:w-full after:absolute after:bottom-0 after:left-0  relative"
             }`}
           >
             Series
-          </button>
+          </li>
         </Link>
       </div>
 
@@ -42,9 +43,16 @@ const Header = () => {
           <input
             type="text"
             placeholder={`Search for ${currentPage}`}
-            className={`focus:outline-none  flex-1`}
+            className={`focus:outline-none max-lg:${
+              isSearch ? "border-2" : "w-0"
+            } `}
           />
-          <button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setIsSearch(!isSearch);
+            }}
+          >
             <FaSearch />
           </button>
         </form>

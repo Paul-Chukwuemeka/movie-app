@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-import Loading from "./loading";
 import Image from "next/image";
 import AppContext from "@/contexts/contexts";
 import { useContext } from "react";
@@ -8,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 const baseImageUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_URL;
 
-function Slider({ trending, isTrendingLoading }) {
+function Slider({ trending }) {
   const banner = useRef(null);
   const router = useRouter();
   const { setSeriesId, setMovieId, currentPage } = useContext(AppContext);
@@ -25,12 +24,10 @@ function Slider({ trending, isTrendingLoading }) {
     return () => clearInterval(interval);
   }, [trending]);
 
-
-
   return (
     <div className=" h-fit w-full max-w-[2400px] relative " ref={banner}>
       <div className="w-full h-full max-h-220  overflow-hidden">
-        <div className="w-full flex flex-col  justify-between text-white h-full absolute z-40 p-10  bg-[#ffffff00]">
+        <div className="w-full flex flex-col  justify-between text-white h-full absolute z-20 p-10  bg-[#ffffff00]">
           <div className="absolute bottom-10  max-w-180 p-4 flex flex-col gap-4">
             <h1 className=" text-5xl max-lg:text-3xl font-bold  py-1 rounded-lg w-fit">
               {trending[currentTrending]?.title
@@ -79,41 +76,36 @@ function Slider({ trending, isTrendingLoading }) {
             )}
           </div>
         </div>
-        {isTrendingLoading ? (
-          <div className="w-full lg:h-160">
-            <Loading />
-          </div>
-        ) : (
-          <div
-            className={`flex *:shrink-0 h-fit w-fit  
+
+        <div
+          className={`flex *:shrink-0 h-fit w-fit  
               ${currentTrending == 0 ? "duration-0" : "duration-300"} 
             `}
-            style={{
-              transform: `translateX(-${
-                currentTrending *
-                (banner.current?.clientWidth ? banner.current.clientWidth : 0)
-              }px)`,
-            }}
-          >
-            {trending &&
-              trending.map((item, i) => {
-                return (
-                  item.backdrop_path && (
-                    <Image
-                      key={i}
-                      src={baseImageUrl + item.backdrop_path}
-                      width={1200}
-                      height={560}
-                      priority
-                      alt=""
-                      aria-label=""
-                      className="w-full h-auto  object-fill "
-                    />
-                  )
-                );
-              })}
-          </div>
-        )}
+          style={{
+            transform: `translateX(-${
+              currentTrending *
+              (banner.current?.clientWidth ? banner.current.clientWidth : 0)
+            }px)`,
+          }}
+        >
+          {trending &&
+            trending.map((item, i) => {
+              return (
+                item.backdrop_path && (
+                  <Image
+                    key={i}
+                    src={baseImageUrl + item.backdrop_path}
+                    width={1200}
+                    height={560}
+                    priority
+                    alt=""
+                    aria-label=""
+                    className="w-full h-auto  object-fill "
+                  />
+                )
+              );
+            })}
+        </div>
       </div>
       <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-gray-950 to-transparent"></div>
     </div>
@@ -122,23 +114,3 @@ function Slider({ trending, isTrendingLoading }) {
 
 export default Slider;
 
-
-/*
-group = 10
-bill = 142
-
-
-
-(bill * %tip)/100
-
-
-(142 * 50)100 = 71 
-
-total = 142 + 71 = 213
-
-tip Per person = tip/group = 71/10 = 7.1
-total/group
-final bill per person = total/group = 213/10 =  21.3
-
-
-*/
