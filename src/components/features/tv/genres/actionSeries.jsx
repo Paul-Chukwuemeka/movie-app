@@ -1,6 +1,5 @@
 import useGetSeriesByGenre from "@/hooks/series/useGetSeriesByGenre";
-import Card from "@/components/ui/card";
-
+import Roll from "@/components/ui/roll";
 const ActionSeries = () => {
   const { data, error } = useGetSeriesByGenre(10759);
 
@@ -11,19 +10,7 @@ const ActionSeries = () => {
           <h1 className="text-left w-full px-4 py-2 text-3xl font-bold">
             Action
           </h1>
-          <div className="w-full overflow-y-hidden movies flex gap-4 overflow-x-scroll p-4 py-1 ">
-            {data &&
-              data.map((item, i) => {
-                return (
-                  <Card
-                    key={i}
-                    title={item.name}
-                    image={item.poster_path}
-                    id={item.id}
-                  />
-                );
-              })}
-          </div>
+         <Roll data={data}/>
         </>
       )}
     </div>
