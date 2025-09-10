@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { BiCameraMovie } from "react-icons/bi";
-import { FaCheck, FaPlus } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 import AppContext from "@/contexts/contexts";
 import { useContext } from "react";
@@ -16,7 +15,7 @@ const Card = ({ title, image, id }) => {
 
   return (
     <div
-      className="overflow-hidden cursor-pointer   h-70 w-50 hover:w-80 relative shrink-0 delay-500 duration-500"
+      className="overflow-hidden cursor-pointer  h-70 w-50 hover:w-80 relative shrink-0 delay-500 duration-500"
       onClick={() => {
         if (pathName == "/") {
           setMovieId(id);
@@ -55,7 +54,7 @@ const Card = ({ title, image, id }) => {
       >
         <button
           title=""
-          className=" active:scale-95 cursor-pointer flex items-center justify-center font-bold text-2xl rounded-lg "
+          className=" active:scale-95 p-2 cursor-pointer flex items-center justify-center font-bold text-2xl rounded-lg "
           onClick={(e) => {
             e.stopPropagation();
             setAddToList(!addToList);
@@ -68,7 +67,7 @@ const Card = ({ title, image, id }) => {
             viewBox="0 0 24 24"
             fill={addToList ? "red" : "none"}
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth="1"
             strokeLinecap="round"
             strokeLinejoin="round"
             className=""
