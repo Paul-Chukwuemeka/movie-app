@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { usePathname } from "next/navigation";
 
 const Card = ({ title, image, id }) => {
-  const baseImageUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_URL;
+  const baseImageUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_URL_CARD;
   const [addToList, setAddToList] = useState(false);
   const { setSeriesId, setMovieId } = useContext(AppContext);
   const router = useRouter();
@@ -15,7 +15,7 @@ const Card = ({ title, image, id }) => {
 
   return (
     <div
-      className="overflow-hidden cursor-pointer  h-70 w-50 hover:w-80 relative shrink-0 delay-500 duration-500"
+      className="overflow-hidden cursor-pointer snap-start h-70 w-50  z-10 relative shrink-0 delay-500 duration-500"
       onClick={() => {
         if (pathName == "/") {
           setMovieId(id);
@@ -35,8 +35,8 @@ const Card = ({ title, image, id }) => {
             height={240}
             src={baseImageUrl + image}
             alt={title}
-            priority
             aria-label={title}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="w-full h-full"
           />
         ) : (
@@ -48,7 +48,7 @@ const Card = ({ title, image, id }) => {
       </div>
       <div
         className="block *:opacity-0 hover:*:opacity-100 
-     *:transition-opacity *:duration-500 *:delay-500 
+     *:transition-opacity *:duration-500  
      hover:bg-black/60 bg-transparent absolute top-0 left-0 h-full
      w-full"
       >

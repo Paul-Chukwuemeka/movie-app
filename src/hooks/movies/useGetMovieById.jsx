@@ -17,6 +17,7 @@ const useGetMovieById = (id) => {
             id: id,
           },
         });
+        console.log(res)
         setData(res.data);
       } catch (error) {
         if (!ignore) setError(error);

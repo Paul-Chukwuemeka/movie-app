@@ -1,6 +1,6 @@
+"use client"
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { MdMovie } from "react-icons/md";
 import AppContext from "@/contexts/contexts";
 import { useContext } from "react";
 import Link from "next/link";

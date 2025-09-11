@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 
-const baseImageUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_URL;
+const baseImageUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_URL_SLIDER;
 
 function Slider({ trending }) {
   const banner = useRef(null);
@@ -97,7 +97,7 @@ function Slider({ trending }) {
                     src={baseImageUrl + item.backdrop_path}
                     width={1200}
                     height={560}
-                    priority
+                    sizes="(max-width: 1000px) 185px, 342px"
                     alt=""
                     aria-label=""
                     className="w-full h-auto  object-fill "
@@ -113,4 +113,3 @@ function Slider({ trending }) {
 }
 
 export default Slider;
-

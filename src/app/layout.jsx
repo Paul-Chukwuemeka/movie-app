@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ContextProvider from "@/contexts/contextProvider";
 import PageLoader from "@/components/features/pageLoader";
+import Header from "@/components/layout/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} relative antialiased`}
       >
         <ContextProvider>
+          <Header/>
           <PageLoader />
           {children}
         </ContextProvider>

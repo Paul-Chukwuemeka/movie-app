@@ -8,8 +8,8 @@ const PageLoader = () => {
 
   return (
     <div
-      className={`duration-500 top-0 left-0  absolute bg-gray-900 z-50 w-full h-screen text-white flex flex-col gap-10 items-center justify-center
-        ${loading ? "opacity-100" : "opacity-0"}`}
+      className={`duration-800 top-0 left-0  absolute bg-gray-900 z-50 w-full h-screen text-white flex flex-col gap-10 items-center justify-center
+        ${loading ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"}`}
     >
       <svg
         width="100"
